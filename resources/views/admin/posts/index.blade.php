@@ -22,7 +22,7 @@
                         <td><img src="{{ $post->photo ?$post->photo->file : '/images/placeholder_posts.png' }}" alt="post_image" height="50" width="60"></td>
                        <td>{{ $post->user->name }}</td>
                        <td>{{ $post->category->name }}</td>
-                       <td>{{ $post->title }}</td>
+                       <td><a href="{{ route('admin.posts.edit', $post->id) }}">{{ $post->title }}</a></td>
                        <td>{{ $post->body }}</td>
                        <td>{{ $post->created_at->diffForHumans() }}</td>
                        <td>{{ $post->updated_at->diffForHumans() }}</td>
