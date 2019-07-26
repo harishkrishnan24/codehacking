@@ -29,8 +29,8 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="file">Upload Image</label>
-            <input type="file" name="file" class="form-control">
+            <label for="photo_id">Upload Image</label>
+            <input type="file" name="photo_id" class="form-control">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
