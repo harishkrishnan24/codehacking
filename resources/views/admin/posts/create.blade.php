@@ -12,7 +12,10 @@
         <div class="form-group">
             <label for="category_id">Category</label>
             <select name="category_id" class="form-control">
-                <option value="1">PHP</option>
+                <option value="">Choose</option>
+                @foreach($categories as $key => $category)
+                    <option value="{{ $key }}">{{ $category }}</option>
+                @endforeach
             </select>
         </div>
         <div class="form-group">
