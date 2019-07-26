@@ -42,8 +42,15 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" class="form-control">
             </div>
-            <div class="form-group">
+            <div class="form-group pull-left">
                 <input type="submit" value="Edit User" class="btn btn-primary">
+            </div>
+        </form>
+        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="pull-right">
+                    {{ csrf_field() }}
+            <input type="hidden" name="_method" value="DELETE">
+            <div class="form-group">
+                <input type="submit" value="Delete User" class="btn btn-danger">
             </div>
         </form>
         </div>
