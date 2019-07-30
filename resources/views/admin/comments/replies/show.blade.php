@@ -1,38 +1,36 @@
 @extends('layouts.admin')
 
 @section('content')
-    @if (count($comments) > 0)
-        <h1>Comments</h1>
+    @if (count($replies) > 0)
+        <h1>Replies</h1>
         <table class="table">
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Author</th>
                     <th>Email</th>
-                    <th>Comment</th>
+                    <th>Reply</th>
                     <th>Post</th>
-                    <th>Replies</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($comments as $comment)
+                @foreach ($replies as $reply)
                     <tr>
-                        <td>{{ $comment->id }}</td>
-                        <td>{{ $comment->author }}</td>
-                        <td>{{ $comment->email }}</td>
-                        <td>{{ $comment->body }}</td>
-                        <td><a href="{{ route('home.post', $comment->post->id) }}">View Post</a></td>
-                        <td><a href="{{ route('admin.comments.replies.show', $comment->id) }}">View Replies</a></td>
+                        <td>{{ $reply->id }}</td>
+                        <td>{{ $reply->author }}</td>
+                        <td>{{ $reply->email }}</td>
+                        <td>{{ $reply->body }}</td>
+                        <td><a href="{{ route('home.post', $reply->comment->post->id) }}">View Post</a></td>
                         <td>
-                            @if ($comment->is_active == 1)
-                                <form action="{{ route('admin.comments.update', $comment->id) }}" method="post">
+                            @if ($reply->is_active == 1)
+                                <form action="{{ route('admin.comments.replies.update', $reply->id) }}" method="post">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="_method" value="PATCH">
                                     <input type="hidden" name="is_active" value="0">
                                     <input type="submit" value="Un-approve" class="btn btn-danger">
                                 </form>
                             @else
-                                <form action="{{ route('admin.comments.update', $comment->id) }}" method="post">
+                                <form action="{{ route('admin.comments.replies.update', $reply->id) }}" method="post">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="_method" value="PATCH">
                                     <input type="hidden" name="is_active" value="1">
@@ -41,7 +39,7 @@
                             @endif
                         </td>
                         <td>
-                            <form action="{{ route('admin.comments.destroy', $comment->id) }}" method="post">
+                            <form action="{{ route('admin.comments.replies.destroy', $reply->id) }}" method="post">
                                         {{ csrf_field() }}
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="submit" value="Delete" class="btn btn-danger">
@@ -52,6 +50,6 @@
             </tbody>
         </table>
     @else
-        <h1 class="text-center">No Comments</h1>
+        <h1 class="text-center">No Replies</h1>
     @endif
 @endsection
