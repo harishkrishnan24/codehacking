@@ -38,6 +38,7 @@
                 <!-- Blog Comments -->
 
                 <!-- Comments Form -->
+                @if (Auth::check())
                 <div class="well">
                     <h4>Leave a Comment:</h4>
                     <form role="form" method="post" action="{{ route('admin.comments.store') }}">
@@ -49,23 +50,28 @@
                         <button type="submit" class="btn btn-primary">Submit Comment</button>
                     </form>
                 </div>
+                @endif
 
                 <hr>
 
                 <!-- Posted Comments -->
-
-                <!-- Comment -->
+            @if (count($comments) > 0)
+                @foreach ($comments as $comment)
+                                        <!-- Comment -->
                 <div class="media">
                     <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
+                        <img class="media-object" height="64" src="{{ $comment->photo }}" alt="user_image">
                     </a>
                     <div class="media-body">
-                        <h4 class="media-heading">Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
+                        <h4 class="media-heading">{{ $comment->author }}
+                            <small>{{ $comment->created_at->diffForHumans() }}</small>
                         </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        {{ $comment->body }}
                     </div>
                 </div>
+                @endforeach
+            @endif
+
 
                 <!-- Comment -->
                 <div class="media">
